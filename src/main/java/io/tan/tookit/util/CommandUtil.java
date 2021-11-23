@@ -89,6 +89,27 @@ public class CommandUtil {
     }
 
     /**
+     * 检查命令是否有效是否存在
+     *
+     * @param commands 命令
+     * @return boolean
+     */
+    public static String commandExistForStr(String... commands) {
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.redirectErrorStream(true);
+            processBuilder.command(commands);
+            String result = commandGBKResult(processBuilder.start().getInputStream());
+            log.info(result);
+            return result;
+        } catch (Exception e) {
+            log.error("检查命令是否有效是否存在:", e);
+        }
+        return null;
+    }
+
+
+    /**
      * 检查环境变量是否有效是否存在 和 设置全局变量
      * 检查：set java
      * 设置：set java=变量内容
