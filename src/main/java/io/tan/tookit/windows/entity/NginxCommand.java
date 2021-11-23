@@ -37,7 +37,7 @@ public class NginxCommand  implements Serializable {
 
     @ApiModelProperty(value = "检查配置是否正确")
     @Builder.Default
-    private String check = "nginx -t";
+    private String checkConfig = "nginx -t";
 
 
 }
