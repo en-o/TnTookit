@@ -74,8 +74,8 @@ public class NginxUtil {
                     "/c",
                     "7z",
                     "x",
-                    "-o" + unzip,
-                    filePath.substring(1));
+                    "-o" + TookitFileUtil.getRealFilePath(unzip),
+                    TookitFileUtil.getRealFilePath(filePath.substring(1)));
         }else {
             log.info("文件" + unZipFilePath + "已解压");
         }
