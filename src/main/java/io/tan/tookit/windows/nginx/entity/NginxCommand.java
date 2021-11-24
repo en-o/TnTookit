@@ -1,4 +1,4 @@
-package io.tan.tookit.windows.entity;
+package io.tan.tookit.windows.nginx.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

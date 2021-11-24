@@ -1,9 +1,9 @@
-package io.tan.tookit.windows.util;
+package io.tan.tookit.windows.nginx;
 
 import cn.hutool.core.io.FileUtil;
 import io.tan.tookit.util.CommandUtil;
 import io.tan.tookit.util.TookitFileUtil;
-import io.tan.tookit.windows.dto.InstallOpenRestyDTO;
+import io.tan.tookit.windows.nginx.dto.InstallOpenRestyDTO;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;

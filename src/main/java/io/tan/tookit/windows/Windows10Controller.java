@@ -3,10 +3,12 @@ package io.tan.tookit.windows;
 import com.detabes.annotation.mapping.PathRestController;
 import com.detabes.result.result.ResultVO;
 import io.swagger.annotations.ApiOperation;
-import io.tan.tookit.windows.dto.InstallOpenRestyDTO;
-import io.tan.tookit.windows.entity.NginxCommand;
-import io.tan.tookit.windows.util.NginxUtil;
-import io.tan.tookit.windows.vo.InstallOpenRestyVO;
+import io.tan.tookit.windows.maven.dto.InstallMavenDTO;
+import io.tan.tookit.windows.maven.vo.MavenVO;
+import io.tan.tookit.windows.nginx.NginxUtil;
+import io.tan.tookit.windows.nginx.dto.InstallOpenRestyDTO;
+import io.tan.tookit.windows.nginx.entity.NginxCommand;
+import io.tan.tookit.windows.nginx.vo.InstallOpenRestyVO;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -51,6 +53,17 @@ public class Windows10Controller {
     }
 
 
+    /**
+     * nginx
+     *
+     * @return message
+     */
+    @SneakyThrows
+    @ApiOperation(value = "安装maven", notes = "maven")
+    @PostMapping("installOMaven")
+    public ResultVO<MavenVO> installOMaven(@RequestBody @Valid InstallMavenDTO mavenDTO) {
+        return ResultVO.success("install ok");
+    }
 
 
 }
