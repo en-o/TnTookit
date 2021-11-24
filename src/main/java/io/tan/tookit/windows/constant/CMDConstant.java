@@ -12,8 +12,9 @@ public class CMDConstant {
     /**
      * 下载文件
      * DOWNLOAD_CERTUTIL + url
+     * 使用时会被杀毒软件杀
      */
-    public static final String DOWNLOAD_CERTUTIL = "certutil -urlcache -split -f ";
+    public static final String DOWNLOAD_CERTUTIL = "certutil & certutil –urlcache –f –split ";
 
     /**
      *  一定要安装了7z，且设置了全局环境
