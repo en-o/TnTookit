@@ -14,6 +14,7 @@ C:.
 ├        └─winsw
 └─tanTookit-0.0.1-SNAPSHOT.jar
 ```
+3. windows 平台安装版jdk可以用次功能，解压版测试没通过
 
 # 完成功能
 ## windows 10
