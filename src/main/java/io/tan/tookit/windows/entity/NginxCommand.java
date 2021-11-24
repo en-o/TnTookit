@@ -40,4 +40,13 @@ public class NginxCommand  implements Serializable {
     private String checkConfig = "nginx -t";
 
 
+    @ApiModelProperty(value = "windows注册服务之后的启动命令",notes = "管理员模式运行命令")
+    @Builder.Default
+    private String windowsStartup = "net start nginx";
+
+
+    @ApiModelProperty(value = "windows注册服务之后的停止命令",notes = "管理员模式运行命令")
+    @Builder.Default
+    private String windowsStop = "net stop  nginx";
+
 }
