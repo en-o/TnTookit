@@ -3,7 +3,6 @@ package io.tan.tookit.windows.util;
 import cn.hutool.core.io.FileUtil;
 import io.tan.tookit.util.CommandUtil;
 import io.tan.tookit.util.TookitFileUtil;
-import io.tan.tookit.windows.constant.CMDConstant;
 import io.tan.tookit.windows.dto.InstallOpenRestyDTO;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -11,8 +10,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 
 /**
  * @author tn
@@ -36,17 +33,14 @@ public class NginxUtil {
             boolean mkdir = file.mkdirs();
             log.info("创建" + path + "文件夹:", mkdir);
         }
-        Runtime runtime = Runtime.getRuntime();
         // nginx存在就不用下了
         String filePath = path + File.separatorChar + openRestyName;
         if (!FileUtil.exist(filePath)) {
-            Process exec = runtime.exec(
-                    CMDConstant.DOWNLOAD_CERTUTIL + " https://openresty.org/download/" + openRestyName,
-                    null,
-                    file);
-            // 会阻塞等待进程执行完
-            int i = exec.waitFor();
-            if (i == 0) {
+            if (CommandUtil.commandRun("powershell",
+                    "$client = new-object System.Net.WebClient",
+                    ";",
+                    "$client.DownloadFile('https://openresty.org/download/" + openRestyName+"'," +
+                            " '"+filePath.substring(1)+"')")) {
                 log.info("下载" + openRestyName + "成功");
             }
         }else {
