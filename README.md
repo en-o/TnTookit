@@ -1,9 +1,24 @@
 # TnTookit
 > 我的工具箱
-# 完成公共
+
+# 注意事项
+## 项目依赖resources目录下的tools包
+1. 源码启动请把tools（包含tools）整个包移动到 target 下使用
+2. jar启动请把tools（包含tools）整个包跟随jar放在一起tree -
+```text
+C:.
+└─tools
+├    └─windows
+├        ├─7-Zip
+├        │  └─Lang
+├        └─winsw
+└─tanTookit-0.0.1-SNAPSHOT.jar
+```
+
+# 完成功能
 ## windows 10
-> 源码测试IDEA必须用管理员模式启动
-> jar 使用也必须在管理员CMD中运行
+> 源码测试IDEA必须用管理员模式启动    
+> jar 使用也必须在管理员CMD中运行   
 1. OpenResty(nginx)的安装注册服务加自启
 
 # 用途
