@@ -1,7 +1,10 @@
 package io.tan.tookit.util;
 
 import lombok.SneakyThrows;
+import org.springframework.boot.system.ApplicationHome;
 import org.springframework.util.ResourceUtils;
+
+import java.io.File;
 
 /**
  * 文件相关util
@@ -26,6 +29,24 @@ public class TookitFileUtil  {
      */
     public static String getRealFilePath(String path){
         return path.replace("/",FILE_SEPARATOR).replace("\\",FILE_SEPARATOR);
+    }
+
+    /**
+     * 获取 jar 所在目录
+     * @return String
+     */
+    public static String getJarPath(){
+        ApplicationHome h = new ApplicationHome(TookitFileUtil.class);
+        return h.getSource().getParentFile().toString();
+    }
+
+    /**
+     * 获取 jar 所在目录
+     * @return String
+     */
+    public static File getJarPathForFile(){
+        ApplicationHome h = new ApplicationHome(TookitFileUtil.class);
+        return h.getSource();
     }
 
 }

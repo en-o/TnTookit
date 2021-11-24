@@ -7,7 +7,6 @@ import io.tan.tookit.windows.dto.InstallOpenRestyDTO;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 
@@ -22,25 +21,24 @@ public class NginxUtil {
     /**
      * 下载nginx
      * @param openRestyName 文件名
-     * @param path 文件路径（判存）
      * @return filePath 下载的文件绝对路径
      */
     @SneakyThrows
-    public static String nginxDownLoad(String openRestyName, String path) {
+    public static String nginxDownLoad(String openRestyName) {
         // 验证下载存放路径是否存在
-        File file = new File(path);
+        File file = TookitFileUtil.getJarPathForFile();
         if (!file.exists() && !file.isDirectory()) {
             boolean mkdir = file.mkdirs();
-            log.info("创建" + path + "文件夹:", mkdir);
+            log.info("创建" + file.getParentFile() + "文件夹:", mkdir);
         }
         // nginx存在就不用下了
-        String filePath = path + File.separatorChar + openRestyName;
+        String filePath = file.getParentFile().toString() + File.separatorChar + openRestyName;
         if (!FileUtil.exist(filePath)) {
             if (CommandUtil.commandRun("powershell",
                     "$client = new-object System.Net.WebClient",
                     ";",
                     "$client.DownloadFile('https://openresty.org/download/" + openRestyName+"'," +
-                            " '"+filePath.substring(1)+"')")) {
+                            " '"+filePath+"')")) {
                 log.info("下载" + openRestyName + "成功");
             }
         }else {
@@ -51,31 +49,35 @@ public class NginxUtil {
 
     /**
      * 解压 nginx.zip
-     * @param path  文件路径（判存）
      * @param installation installation
      * @param openRestyName 文件名
      * @param filePath 下载的文件绝对路径
      * @return unZipFilePath 解压路径
      */
     @SneakyThrows
-    public static String nginxUnzip(String path, InstallOpenRestyDTO installation,
+    public static String nginxUnzip(InstallOpenRestyDTO installation,
                                     String openRestyName,String filePath){
-// 已经解压就不要在解压了
-        // 解压 tools/windows/7-Zip
-        String unzip = path.substring(1);
+        // 已经解压就不要在解压了
+        // 解压插件 tools/windows/7-Zip
+        String unzip =  TookitFileUtil.getJarPathForFile().getParentFile().toString();
+        String toolsPath = unzip+"\\tools\\windows\\7-Zip";
         if (StringUtils.isNotBlank(installation.getInstallPath())) {
             unzip = installation.getInstallPath();
         }
         String unZipFilePath = unzip + File.separatorChar  + openRestyName.substring(0, openRestyName.lastIndexOf("."));
         if (!FileUtil.exist(unZipFilePath)) {
-            CommandUtil.commandRun(new File(ResourceUtils.getURL("classpath:").getPath()
-                            + "tools/windows/7-Zip"),
+            // 解压
+            if(CommandUtil.commandRun(new File(toolsPath),
                     "cmd",
                     "/c",
                     "7z",
                     "x",
                     "-o" + TookitFileUtil.getRealFilePath(unzip),
-                    TookitFileUtil.getRealFilePath(filePath.substring(1)));
+                    TookitFileUtil.getRealFilePath(filePath))){
+                log.info("文件" + unZipFilePath + "解压成功");
+            }else {
+                log.info("文件" + unZipFilePath + "解压失败");
+            }
         }else {
             log.info("文件" + unZipFilePath + "已解压");
         }
@@ -96,20 +98,22 @@ public class NginxUtil {
                     "sc query nginx");
             if(null == reg || StringUtils.contains(reg,"服务名无效") ||
                     StringUtils.contains(reg,"指定的服务未安装") ){
+
+                String jarPath = TookitFileUtil.getJarPathForFile().getParentFile().toString();
+                String toolsWinSWPath = jarPath+"\\tools\\windows\\winsw\\WinSW-x64.exe";
+                String toolsNginxXMLWPath = jarPath+"\\tools\\windows\\winsw\\mynginx.xml";
                 if(!FileUtil.exist(unZipFilePath +"\\mynginx.exe")){
                     CommandUtil.commandRun("cmd",
                             "/c",
                             "copy",
-                            TookitFileUtil.getRealFilePath(ResourceUtils.getURL("classpath:").getPath().substring(1)
-                                    +"tools/windows/winsw/WinSW-x64.exe"),
+                            toolsWinSWPath,
                             unZipFilePath +"\\mynginx.exe");
                 }
                 if(!FileUtil.exist(unZipFilePath +"\\mynginx.xml")) {
                     CommandUtil.commandRun("cmd",
                             "/c",
                             "copy",
-                            TookitFileUtil.getRealFilePath(ResourceUtils.getURL("classpath:").getPath().substring(1)
-                                    +"tools/windows/winsw/mynginx.xml"),
+                            toolsNginxXMLWPath,
                             unZipFilePath +"\\mynginx.xml");
                 }
                 if(CommandUtil.commandRun(new File(unZipFilePath),
