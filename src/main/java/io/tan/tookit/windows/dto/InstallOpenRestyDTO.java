@@ -41,21 +41,10 @@ public class InstallOpenRestyDTO implements Serializable {
      * 注册服务
      * 1：注册服务， 0：不注册（默认0）
      */
-    @ApiModelProperty(value = "1：注册服务， 0：不注册（默认0）", example = "0")
+    @ApiModelProperty(value = "1：注册服务（+自启）， 0：不注册（默认0）", example = "0")
     @Builder.Default
     @Max(1)
     @Min(0)
     Integer registerService = 0;
-
-
-    /**
-     * 自启
-     * 1：不自启， 0：自启（默认0）
-     */
-    @ApiModelProperty(value = "1：不自启， 0：自启（默认0）",notes = "跟registerService连动的", example = "0")
-    @Builder.Default
-    @Max(1)
-    @Min(0)
-    Integer autoStart = 0;
 
 }
