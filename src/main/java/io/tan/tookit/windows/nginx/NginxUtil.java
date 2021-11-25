@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
+import java.text.MessageFormat;
 
 /**
  * @author tn
@@ -38,7 +39,7 @@ public class NginxUtil {
             if (CommandUtil.commandRun("powershell",
                     "$client = new-object System.Net.WebClient",
                     ";",
-                    "$client.DownloadFile('"+ UrlConstant.NGINX_OPENRESTY + openRestyName+"'," +
+                    "$client.DownloadFile('"+ MessageFormat.format(UrlConstant.NGINX_OPENRESTY_DOWNLOAD_URL,openRestyName) +"'," +
                             " '"+filePath+"')")) {
                 log.info("下载" + openRestyName + "成功");
             }
