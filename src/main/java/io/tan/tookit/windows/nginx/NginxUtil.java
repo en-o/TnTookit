@@ -1,6 +1,7 @@
 package io.tan.tookit.windows.nginx;
 
 import cn.hutool.core.io.FileUtil;
+import io.tan.tookit.constant.UrlConstant;
 import io.tan.tookit.util.CommandUtil;
 import io.tan.tookit.util.TookitFileUtil;
 import io.tan.tookit.windows.nginx.dto.InstallOpenRestyDTO;
@@ -37,7 +38,7 @@ public class NginxUtil {
             if (CommandUtil.commandRun("powershell",
                     "$client = new-object System.Net.WebClient",
                     ";",
-                    "$client.DownloadFile('https://openresty.org/download/" + openRestyName+"'," +
+                    "$client.DownloadFile('"+ UrlConstant.NGINX_OPENRESTY + openRestyName+"'," +
                             " '"+filePath+"')")) {
                 log.info("下载" + openRestyName + "成功");
             }
