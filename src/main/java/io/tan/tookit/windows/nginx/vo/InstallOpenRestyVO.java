@@ -14,7 +14,7 @@ import java.io.Serializable;
  * @version 1
  * @date 2021-11-23 17:13
  */
-@ApiModel(value = "openResty")
+@ApiModel(value = "openRestyVO")
 @Getter
 @Setter
 @Builder
