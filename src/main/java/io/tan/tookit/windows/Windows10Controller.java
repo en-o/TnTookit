@@ -35,7 +35,7 @@ public class Windows10Controller {
      * @return message
      */
     @SneakyThrows
-    @ApiOperation(value = "安装OpenResty", notes = "Nginx")
+    @ApiOperation(value = "安装OpenResty", notes = "Nginx的下载，注册服务跟设置服务自启")
     @PostMapping("installOpenResty")
     public ResultVO<InstallOpenRestyVO> installOpenResty(@RequestBody @Valid InstallOpenRestyDTO installation) {
         String openRestyName = installation.getFileName();
@@ -61,7 +61,7 @@ public class Windows10Controller {
      * @return message
      */
     @SneakyThrows
-    @ApiOperation(value = "安装maven", notes = "maven")
+    @ApiOperation(value = "安装maven", notes = "下载跟设置全局环境变量")
     @PostMapping("installOMaven")
     public ResultVO<MavenVO> installOMaven(@RequestBody @Valid InstallMavenDTO mavenDTO) {
         return ResultVO.success("install ok");
