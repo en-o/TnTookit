@@ -70,7 +70,7 @@ public class Windows10Controller {
         String filePath = MavenUtil.mavenDownLoad(mavenName, mavenDTO.getMaven3Version());
         //  解压文件
         String unZipFilePath = MavenUtil.mavenUnzip(mavenDTO.getInstallPath(), mavenName, filePath);
-        // TODO:设置全局环境
+        // 设置全局环境
         String message = MavenUtil.settingMvnEnv(unZipFilePath);
         String[] messageSplit = message.split("@@");
         MavenVO mavenVO = MavenVO.builder()

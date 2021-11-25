@@ -78,16 +78,16 @@ public class MavenUtil {
      */
     public static String settingMvnEnv(String filePath) {
         String checkEnvironment = CommandUtil.commandExistForStr("powershell", "mvn", "-v");
-        if (!StringUtils.contains(checkEnvironment, "Apache Maven")) {
+        if (StringUtils.contains(checkEnvironment, "Apache Maven")) {
             return "maven已有全局环境无需配置@@_" + checkEnvironment;
         } else {
             String message = CommandUtil.commandRunStr("cmd",
                     "/c",
                     "setx /M \"path\" \"%path%;"+TookitFileUtil.getRealFilePath(filePath)+"\\bin\"");
             if (StringUtils.contains(message, "成功:")) {
-                return "maven全局环境配置成功@@_" + checkEnvironment;
+                return "maven全局环境配置成功@@_" + message;
             } else {
-                return "maven全局环境配置失败@@_" + checkEnvironment;
+                return "maven全局环境配置失败@@_" + message;
             }
 
         }
