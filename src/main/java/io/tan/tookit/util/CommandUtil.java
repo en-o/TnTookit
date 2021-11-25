@@ -35,6 +35,7 @@ public class CommandUtil {
             String result = commandGBKResult(start.getInputStream());
             log.info(result);
             start.waitFor();
+            start.destroy();
             return true;
         } catch (Exception er) {
             log.error("运行命令:", er);
@@ -60,6 +61,7 @@ public class CommandUtil {
             String result = commandGBKResult(start.getInputStream());
             log.info(result);
             start.waitFor();
+            start.destroy();
             return true;
         } catch (Exception e) {
             log.error("运行命令2:", e);
@@ -78,8 +80,10 @@ public class CommandUtil {
             ProcessBuilder processBuilder = new ProcessBuilder();
             processBuilder.redirectErrorStream(true);
             processBuilder.command(commands);
-            String result = commandGBKResult(processBuilder.start().getInputStream());
+            Process start = processBuilder.start();
+            String result = commandGBKResult(start.getInputStream());
             log.info(result);
+            start.destroy();
             return true;
         } catch (Exception e) {
             log.error("检查命令是否有效是否存在:", e);
@@ -98,8 +102,10 @@ public class CommandUtil {
             ProcessBuilder processBuilder = new ProcessBuilder();
             processBuilder.redirectErrorStream(true);
             processBuilder.command(commands);
-            String result = commandGBKResult(processBuilder.start().getInputStream());
+            Process start = processBuilder.start();
+            String result = commandGBKResult(start.getInputStream());
             log.info(result);
+            start.destroy();
             return result;
         } catch (Exception e) {
             log.error("检查命令是否有效是否存在:", e);
@@ -131,6 +137,7 @@ public class CommandUtil {
             Process start = processBuilder.start();
             String result = commandGBKResult(start.getInputStream());
             log.info(result);
+            start.destroy();
             return !result.contains("没有定义");
         } catch (Exception e) {
             log.error("检查环境变量是否有效是否存在:",e);
@@ -146,5 +153,32 @@ public class CommandUtil {
      */
     public static String commandGBKResult(InputStream inputStream) {
         return IoUtil.read(inputStream, Charset.forName("GBK"));
+    }
+
+
+    /**
+     * 解压文件
+     * @param installPath  安装路径
+     * @param fileName  文件名
+     * @param filePath  待文件觉得路径
+     * @return 解压路径
+     */
+    public static void unzip7Z(String installPath, String fileName, String filePath) {
+        // 已经解压就不要在解压了
+        // 解压插件 tools/windows/7-Zip
+        String toolsPath = TookitFileUtil.getJarPathForFile().getParentFile().toString() + "\\tools\\windows\\7-Zip";
+        // 解压
+        if (CommandUtil.commandRun(new File(toolsPath),
+                "cmd",
+                "/c",
+                "7z",
+                "x",
+                "-y",
+                "-o" + TookitFileUtil.getRealFilePath(installPath),
+                TookitFileUtil.getRealFilePath(filePath))) {
+            log.info("文件" + fileName + "解压成功");
+        } else {
+            log.info("文件" + fileName + "解压失败");
+        }
     }
 }

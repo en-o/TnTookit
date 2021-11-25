@@ -4,6 +4,7 @@ import com.detabes.annotation.mapping.PathRestController;
 import com.detabes.result.result.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.tan.tookit.windows.maven.MavenUtil;
 import io.tan.tookit.windows.maven.dto.InstallMavenDTO;
 import io.tan.tookit.windows.maven.vo.MavenVO;
 import io.tan.tookit.windows.nginx.NginxUtil;
@@ -64,8 +65,23 @@ public class Windows10Controller {
     @ApiOperation(value = "安装maven", notes = "下载跟设置全局环境变量")
     @PostMapping("installOMaven")
     public ResultVO<MavenVO> installOMaven(@RequestBody @Valid InstallMavenDTO mavenDTO) {
-        return ResultVO.success("install ok");
+        String mavenName = mavenDTO.getFileName();
+        // 下载文件
+        String filePath = MavenUtil.mavenDownLoad(mavenName, mavenDTO.getMaven3Version());
+        //  解压文件
+        String unZipFilePath = MavenUtil.mavenUnzip(mavenDTO.getInstallPath(), mavenName, filePath);
+        // TODO:设置全局环境
+        String message = MavenUtil.settingMvnEnv(unZipFilePath);
+        String[] messageSplit = message.split("@@");
+        MavenVO mavenVO = MavenVO.builder()
+                .installPath(unZipFilePath)
+                .settingPath(unZipFilePath+"\\conf")
+                .remark(messageSplit[1])
+                .build();
+        return ResultVO.success(mavenVO,messageSplit[0]);
     }
+
+
 
 
 }
