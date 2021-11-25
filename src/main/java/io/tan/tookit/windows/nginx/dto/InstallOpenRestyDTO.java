@@ -38,7 +38,7 @@ public class InstallOpenRestyDTO implements Serializable {
      * link: http://openresty.org/cn/download.html
      * ps: tar.gz  结尾的版本在 win中都有
      */
-    @ApiModelProperty(value = "openresty版本", example = "1.19.9.1")
+    @ApiModelProperty(value = "(tar.gz结尾的版本在win中都有)openresty版本:http://openresty.org/cn/download.html", example = "1.19.9.1")
     @Builder.Default
     String openrestyVersion = "1.19.9.1";
 
