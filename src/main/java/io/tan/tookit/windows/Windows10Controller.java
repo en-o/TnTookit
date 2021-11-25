@@ -2,6 +2,7 @@ package io.tan.tookit.windows;
 
 import com.detabes.annotation.mapping.PathRestController;
 import com.detabes.result.result.ResultVO;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.tan.tookit.windows.maven.dto.InstallMavenDTO;
 import io.tan.tookit.windows.maven.vo.MavenVO;
@@ -23,6 +24,7 @@ import javax.validation.Valid;
  * @version 1
  * @date 2021-11-23 10:15
  */
+@Api(tags = {"winEnv"})
 @PathRestController("win")
 @Slf4j
 public class Windows10Controller {
