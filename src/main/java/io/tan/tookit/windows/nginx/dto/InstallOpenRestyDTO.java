@@ -59,7 +59,7 @@ public class InstallOpenRestyDTO implements Serializable {
 
     /**
      * 注册服务
-     * 1：注册服务， 0：不注册（默认0）
+     * 1：注册服务， 0：不注册（默认1）
      */
     @ApiModelProperty(value = "1：注册服务（+自启）， 0：不注册,（默认1）", example = "1")
     @Builder.Default
