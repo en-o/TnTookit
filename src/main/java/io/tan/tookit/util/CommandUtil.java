@@ -46,6 +46,30 @@ public class CommandUtil {
     /**
      * 运行 命令
      *
+     * @param commands 命令
+     * @return boolean
+     */
+    public static String commandRunStr(String... commands) {
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.redirectErrorStream(true);
+            processBuilder.command(commands);
+            log.info("命令：" + processBuilder.command());
+            Process start = processBuilder.start();
+            String result = commandGBKResult(start.getInputStream());
+            log.info(result);
+            start.waitFor();
+            start.destroy();
+            return result;
+        } catch (Exception er) {
+            log.error("运行命令:", er);
+            return null;
+        }
+    }
+
+    /**
+     * 运行 命令
+     *
      * @param  file 运行目录
      * @param commands 命令
      * @return boolean
@@ -83,6 +107,7 @@ public class CommandUtil {
             Process start = processBuilder.start();
             String result = commandGBKResult(start.getInputStream());
             log.info(result);
+            start.waitFor();
             start.destroy();
             return true;
         } catch (Exception e) {
@@ -105,6 +130,7 @@ public class CommandUtil {
             Process start = processBuilder.start();
             String result = commandGBKResult(start.getInputStream());
             log.info(result);
+            start.waitFor();
             start.destroy();
             return result;
         } catch (Exception e) {
@@ -137,6 +163,7 @@ public class CommandUtil {
             Process start = processBuilder.start();
             String result = commandGBKResult(start.getInputStream());
             log.info(result);
+            start.waitFor();
             start.destroy();
             return !result.contains("没有定义");
         } catch (Exception e) {
