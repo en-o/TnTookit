@@ -7,6 +7,8 @@ import io.swagger.annotations.ApiOperation;
 import io.tan.tookit.windows.maven.MavenUtil;
 import io.tan.tookit.windows.maven.dto.InstallMavenDTO;
 import io.tan.tookit.windows.maven.vo.MavenVO;
+import io.tan.tookit.windows.mysql.dto.InstallMySqlDTO;
+import io.tan.tookit.windows.mysql.vo.MySqlVO;
 import io.tan.tookit.windows.nginx.NginxUtil;
 import io.tan.tookit.windows.nginx.dto.InstallOpenRestyDTO;
 import io.tan.tookit.windows.nginx.entity.NginxCommand;
@@ -81,6 +83,20 @@ public class Windows10Controller {
         return ResultVO.success(mavenVO,messageSplit[0]);
     }
 
+    /**
+     * mysql
+     *
+     * @return message
+     */
+    @SneakyThrows
+    @ApiOperation(value = "安装MySQL", notes = "下载（解压版），安装，设置全局")
+    @PostMapping("installOMaven")
+    public ResultVO<MySqlVO> installOMySQL(@RequestBody @Valid InstallMySqlDTO mySqlDTO) {
+        // TODO: 下载文件
+        // TODO: 解压文件
+        // TODO: 设置全局环境+设置默认配置
+        return ResultVO.success(MySqlVO.builder().build(),"install ok");
+    }
 
 
 
