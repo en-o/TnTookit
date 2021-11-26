@@ -46,7 +46,7 @@ public class InstallMavenDTO implements Serializable {
      *  maven3.x版本
      * link: https://dlcdn.apache.org/maven/maven-3/
      */
-    @ApiModelProperty(value = "openresty版本", example = "3.6.3")
+    @ApiModelProperty(value = " maven3.x版本:https://dlcdn.apache.org/maven/maven-3/", example = "3.6.3")
     @Builder.Default
     String maven3Version = "3.6.3";
 
