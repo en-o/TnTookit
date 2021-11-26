@@ -6,9 +6,11 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.tan.tookit.windows.maven.MavenUtil;
 import io.tan.tookit.windows.maven.dto.InstallMavenDTO;
+import io.tan.tookit.windows.maven.entity.MavenCommand;
 import io.tan.tookit.windows.maven.vo.MavenVO;
 import io.tan.tookit.windows.mysql.MySqlUtil;
 import io.tan.tookit.windows.mysql.dto.InstallMySqlDTO;
+import io.tan.tookit.windows.mysql.entity.MySqlCommand;
 import io.tan.tookit.windows.mysql.vo.MySqlVO;
 import io.tan.tookit.windows.nginx.NginxUtil;
 import io.tan.tookit.windows.nginx.dto.InstallOpenRestyDTO;
@@ -81,6 +83,7 @@ public class Windows10Controller {
                 .settingPath(unZipFilePath + "\\conf")
                 .remark(messageSplit[1])
                 .build();
+        mavenVO.setCommand(MavenCommand.builder().build());
         return ResultVO.success(mavenVO, messageSplit[0]);
     }
 
@@ -103,11 +106,11 @@ public class Windows10Controller {
                 mySqlDTO.getServiceName(),
                 unZipFilePath);
 
-        MySqlVO build = MySqlVO.builder()
+        MySqlVO mySqlVO = MySqlVO.builder()
                 .installPath(unZipFilePath)
                 .build();
-
-        return ResultVO.success(build, mysqlEnv);
+        mySqlVO.setCommand(MySqlCommand.builder().build());
+        return ResultVO.success(mySqlVO, mysqlEnv);
     }
 
 
