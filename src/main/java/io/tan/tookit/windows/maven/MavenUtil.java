@@ -57,17 +57,7 @@ public class MavenUtil {
     public static String mavenUnzip(String installPath,
                                     String mavenName, String filePath) {
         String mavenNameSub = mavenName.substring(0, mavenName.lastIndexOf("-"));
-        // 已经解压就不要在解压了
-        String unzip = TookitFileUtil.getJarPathForFile().getParentFile().toString();
-        if (StringUtils.isNotBlank(installPath)) {
-            unzip = installPath;
-        }
-        if (TookitFileUtil.existsDirectory(unzip, mavenNameSub)) {
-            CommandUtil.unzip7Z(installPath, mavenName, filePath);
-        } else {
-            log.info("文件" + mavenName + "早已解压");
-        }
-        return TookitFileUtil.getRealFilePath(unzip + TookitFileUtil.FILE_SEPARATOR + mavenNameSub);
+        return TookitFileUtil.winUnZip(installPath,mavenName,filePath, mavenNameSub);
     }
 
     /**
