@@ -24,15 +24,23 @@ public class MySqlCommand implements Serializable {
 
     @ApiModelProperty(value = "隐式mysql登录（显式：'mysql -u root -p123'）")
     @Builder.Default
-    private String MySqlLogin = "mysql -u 用户名 -p;";
+    private String mySqlLogin = "mysql -u 用户名 -p;";
+
+    @ApiModelProperty(value = "指定端口登录")
+    @Builder.Default
+    private String mySqlPortLogin = "mysql -P端口 -u 用户名 -p密码;";
 
     @ApiModelProperty(value = "远程显式mysql登录")
     @Builder.Default
-    private String MySqlRemoteLogin = "mysql -h110.110.110.110 -u 用户名 -p 密码;";
+    private String mySqlRemoteLogin = "mysql -h110.110.110.110 -u 用户名 -p 密码;";
 
     @ApiModelProperty(value = "查看mysql版本")
     @Builder.Default
-    private String MySqlVersion = "select version(); or select @@version;";
+    private String mySqlVersion = "select version(); or select @@version;";
+
+    @ApiModelProperty(value = "查看mysql的端口")
+    @Builder.Default
+    private String mySqlPort = "show global variables like 'port';";
 
     @ApiModelProperty(value = "重置密码（mysql/bin）")
     @Builder.Default
