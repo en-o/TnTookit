@@ -58,4 +58,42 @@ public class MySqlUtil {
     }
 
 
+    /**
+     * 设置 安装mysql
+     * @param port 设置端口
+     * @param password 设置密码
+     * @param serviceName 服务名（安装多个时用）
+     * @param unZipFilePath musql解压路径
+     * @return message
+     */
+    public static String settingMysqlEnv(String port,
+                                         String password,
+                                         String serviceName,
+                                         String unZipFilePath) {
+        // 工具文件夹
+        String tools = TookitFileUtil.getJarPathForFile().getParentFile().toString();
+        String vcRuntime = tools + "\\tools\\windows\\mysql\\VC_redist.x64.exe";
+        String installBat = tools + "\\tools\\windows\\mysql\\mysql8\\mysql_install.bat";
+
+        // 在mysql根路径添加脚本
+        boolean b = CommandUtil.commandRun("cmd",
+                "/c",
+                "copy",
+                installBat,
+                unZipFilePath + "\\mysql_install.bat");
+        if(b){
+            // 安装
+            String str = CommandUtil.commandRunStr("cmd",
+                    "/c",
+                    unZipFilePath + "\\mysql_install.bat", port,
+                    password,
+                    serviceName);
+            return str;
+        }else {
+            return "找不到安装脚本";
+        }
+
+    }
+
+
 }

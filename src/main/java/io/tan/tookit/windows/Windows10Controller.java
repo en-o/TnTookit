@@ -78,10 +78,10 @@ public class Windows10Controller {
         String[] messageSplit = message.split("@@");
         MavenVO mavenVO = MavenVO.builder()
                 .installPath(unZipFilePath)
-                .settingPath(unZipFilePath+"\\conf")
+                .settingPath(unZipFilePath + "\\conf")
                 .remark(messageSplit[1])
                 .build();
-        return ResultVO.success(mavenVO,messageSplit[0]);
+        return ResultVO.success(mavenVO, messageSplit[0]);
     }
 
     /**
@@ -98,14 +98,17 @@ public class Windows10Controller {
         // 解压文件
         String unZipFilePath = MySqlUtil.mysqlUnzip(mySqlDTO.getInstallPath(),
                 mySqlDTO.getFileName(), filePath);
-        // TODO: 设置全局环境+设置默认配置
+        // 安装mysql
+        String mysqlEnv = MySqlUtil.settingMysqlEnv(mySqlDTO.getPort(), mySqlDTO.getPassword(),
+                mySqlDTO.getServiceName(),
+                unZipFilePath);
+
         MySqlVO build = MySqlVO.builder()
                 .installPath(unZipFilePath)
                 .build();
 
-        return ResultVO.success(build,"install ok");
+        return ResultVO.success(build, mysqlEnv);
     }
-
 
 
 }
