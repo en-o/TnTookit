@@ -90,7 +90,7 @@ public class Windows10Controller {
      */
     @SneakyThrows
     @ApiOperation(value = "安装MySQL", notes = "下载（解压版），安装，设置全局")
-    @PostMapping("installOMaven")
+    @PostMapping("installOMySQL")
     public ResultVO<MySqlVO> installOMySQL(@RequestBody @Valid InstallMySqlDTO mySqlDTO) {
         // TODO: 下载文件
         // TODO: 解压文件
