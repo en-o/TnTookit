@@ -2,6 +2,8 @@ package io.tan.tookit.util;
 
 import cn.hutool.core.io.FileUtil;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.boot.system.ApplicationHome;
 import org.springframework.util.ResourceUtils;
 
@@ -14,6 +16,7 @@ import java.io.File;
  * @version 1
  * @date 2021-11-23 11:22
  */
+@Slf4j
 public class TookitFileUtil {
 
     public static final String FILE_SEPARATOR = System.getProperty("file.separator");
@@ -62,6 +65,29 @@ public class TookitFileUtil {
     public static boolean existsDirectory(String unzipPath, String unzipFileMainName) {
         String unZipFilePath = unzipPath + File.separatorChar + unzipFileMainName;
         return !FileUtil.exist(unZipFilePath);
+    }
+
+
+    /**
+     *
+     * @param installPath 解压路径
+     * @param fileName   文件名
+     * @param filePath    下载的文件绝对路径
+     * @param unZipName  解压后的总目录名
+     * @return unZipFilePath 解压路径
+     */
+    public static String winUnZip(String installPath, String fileName, String filePath,String unZipName) {
+        // 已经解压就不要在解压了
+        String unzip = TookitFileUtil.getJarPathForFile().getParentFile().toString();
+        if (StringUtils.isNotBlank(installPath)) {
+            unzip = installPath;
+        }
+        if (TookitFileUtil.existsDirectory(unzip, unZipName)) {
+            CommandUtil.unzip7Z(installPath, fileName, filePath);
+        } else {
+            log.info("文件" + fileName + "早已解压");
+        }
+        return getRealFilePath(unzip + TookitFileUtil.FILE_SEPARATOR + unZipName);
     }
 
 }

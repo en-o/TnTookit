@@ -18,4 +18,10 @@ public class AppNameConstant {
      *  maven3.x windows下载名字
      */
     public static final String MAVEN3_WIN_NAME = "apache-maven-{0}-bin.zip";
+
+    /**
+     *  mysql8.x windows下载名字
+     *
+     */
+    public static final String MYSQL8_WIN_NAME = "mysql-{0}-winx64.zip";
 }

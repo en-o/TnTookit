@@ -21,4 +21,12 @@ public class UrlConstant {
      */
     public static final String MAVEN3_DOWNLOAD_URL = "https://dlcdn.apache.org/maven/maven-3/{0}/binaries/{1}";
 
+    /**
+     * 根据版本下载
+     * mysql-8.0.25-winx64.zip
+     * mysql下载地址：https://mirrors.huaweicloud.com/mysql/Downloads/MySQL-8.0/
+     * 《MessageFormat.format(MYSQL8_DOWNLOAD_URL,fileName)》
+     */
+    public static final String MYSQL8_DOWNLOAD_URL = "https://mirrors.huaweicloud.com/mysql/Downloads/MySQL-8.0/{0}";
+
 }
