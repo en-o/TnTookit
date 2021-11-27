@@ -1,5 +1,29 @@
-# TnTookit
-> 我的工具箱
+<div style="text-align: center;">
+	<a href="https://tannn.cn"  target="_blank">
+	    <img src="https://tannn.cn/images/Img/TnTookit.jpg" width="400" alt="logo">
+	</a>
+</div>
+<div style="text-align: center;">
+	<strong>TnTookit 服务器/开发机 环境工具箱</strong>
+</div>
+<div style="text-align: center; margin-top: 20px">
+    <a target="_blank" href="https://tannn.cn">
+        <img src='https://img.shields.io/badge/license-GPL--3.0-brightgreen' alt='license'/>
+    </a>
+    <a target="_blank" href="https://tannn.cn">
+        <img src='https://img.shields.io/badge/JDK-1.8.0_281+-green.svg' alt='jdk'/>
+    </a>
+    <a target="_blank" href="https://tannn.cn">
+        <img src='https://gitee.com/etn/TnTookit/badge/star.svg?theme=dark' alt='gitee star'/>
+    </a>
+    <a target="_blank" href="https://tannn.cn">
+        <img src='https://img.shields.io/badge/Author-谭宁-orange.svg' alt='author'/>
+    </a>
+    <a target="_blank" href="https://tannn.cn">
+        <img src='https://img.shields.io/badge/version-v0.0.1beta-brightgreen.svg' alt='version'/>
+    </a>
+</div>
+
 
 # 注意事项
 ## 项目依赖resources目录下的tools包
@@ -28,7 +52,9 @@ C:.
    1. 手动检查电脑是否有VC_redist.x64.exe环境（建议直接带点击安装之后在调用接口）
    2. 由于目前无法检测到VC_redist.x64.exe的安装所以必须手动检测
    3. 要安装多个数据库，请选择不通的安装路径跟端口和服务名
-    
+## win公共功能
+1. 根据端口查询进程名
+2. 根据端口杀进程
 
 # 用途
 1. 安装开发中用到的环境
