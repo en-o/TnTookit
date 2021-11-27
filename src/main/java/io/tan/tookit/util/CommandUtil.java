@@ -4,6 +4,7 @@ import cn.hutool.core.io.IoUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
@@ -37,8 +38,13 @@ public class CommandUtil {
             start.waitFor();
             start.destroy();
             return true;
-        } catch (Exception er) {
-            log.error("运行命令:", er);
+        } catch (InterruptedException | IOException e) {
+            if(e instanceof InterruptedException){
+                Thread.currentThread().interrupt();
+            }
+            e.printStackTrace();
+            e.printStackTrace();
+            log.error("运行命令:", e.getMessage());
             return false;
         }
     }
@@ -61,8 +67,12 @@ public class CommandUtil {
             start.waitFor();
             start.destroy();
             return result;
-        } catch (Exception er) {
-            log.error("运行命令:", er);
+        } catch (InterruptedException | IOException e) {
+            if(e instanceof InterruptedException){
+                Thread.currentThread().interrupt();
+            }
+            e.printStackTrace();
+            log.error("运行命令:", e.getMessage());
             return null;
         }
     }
@@ -87,8 +97,12 @@ public class CommandUtil {
             start.waitFor();
             start.destroy();
             return true;
-        } catch (Exception e) {
-            log.error("运行命令2:", e);
+        } catch (InterruptedException | IOException e) {
+            if(e instanceof InterruptedException){
+                Thread.currentThread().interrupt();
+            }
+            e.printStackTrace();
+            log.error("运行命令2:", e.getMessage());
         }
         return false;
     }
@@ -110,8 +124,12 @@ public class CommandUtil {
             start.waitFor();
             start.destroy();
             return true;
-        } catch (Exception e) {
-            log.error("检查命令是否有效是否存在:", e);
+        }catch (InterruptedException | IOException e) {
+            if(e instanceof InterruptedException){
+                Thread.currentThread().interrupt();
+            }
+            e.printStackTrace();
+            log.error("检查命令是否有效是否存在:", e.getMessage());
         }
         return false;
     }
@@ -133,8 +151,12 @@ public class CommandUtil {
             start.waitFor();
             start.destroy();
             return result;
-        } catch (Exception e) {
-            log.error("检查命令是否有效是否存在:", e);
+        } catch (InterruptedException | IOException e) {
+            if(e instanceof InterruptedException){
+                Thread.currentThread().interrupt();
+            }
+            e.printStackTrace();
+            log.error("检查命令是否有效是否存在:", e.getMessage());
         }
         return null;
     }
@@ -166,8 +188,12 @@ public class CommandUtil {
             start.waitFor();
             start.destroy();
             return !result.contains("没有定义");
-        } catch (Exception e) {
-            log.error("检查环境变量是否有效是否存在:",e);
+        } catch (InterruptedException | IOException e) {
+            if(e instanceof InterruptedException){
+                Thread.currentThread().interrupt();
+            }
+            e.printStackTrace();
+            log.error("检查环境变量是否有效是否存在:",e.getMessage());
         }
         return false;
     }

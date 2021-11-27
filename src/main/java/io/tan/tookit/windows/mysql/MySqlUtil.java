@@ -72,7 +72,7 @@ public class MySqlUtil {
                                          String unZipFilePath) {
         // 工具文件夹
         String tools = TookitFileUtil.getJarPathForFile().getParentFile().toString();
-        String vcRuntime = tools + "\\tools\\windows\\mysql\\VC_redist.x64.exe";
+        /*String vcRuntime = tools + "\\tools\\windows\\mysql\\VC_redist.x64.exe"*/
         String installBat = tools + "\\tools\\windows\\mysql\\mysql8\\mysql_install.bat";
 
         // 在mysql根路径添加脚本
@@ -83,12 +83,11 @@ public class MySqlUtil {
                 unZipFilePath + "\\mysql_install.bat");
         if(b){
             // 安装
-            String str = CommandUtil.commandRunStr("cmd",
+            return CommandUtil.commandRunStr("cmd",
                     "/c",
                     unZipFilePath + "\\mysql_install.bat", port,
                     password,
                     serviceName);
-            return str;
         }else {
             return "找不到安装脚本";
         }
