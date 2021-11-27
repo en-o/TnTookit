@@ -2,37 +2,19 @@ package io.tan.tookit.windows;
 
 import com.detabes.annotation.mapping.PathRestController;
 import com.detabes.result.result.ResultVO;
-import com.google.common.collect.Sets;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.tan.tookit.util.CommandUtil;
-import io.tan.tookit.util.TookitFileUtil;
-import io.tan.tookit.windows.maven.MavenUtil;
-import io.tan.tookit.windows.maven.dto.InstallMavenDTO;
-import io.tan.tookit.windows.maven.entity.MavenCommand;
-import io.tan.tookit.windows.maven.vo.MavenVO;
-import io.tan.tookit.windows.mysql.MySqlUtil;
-import io.tan.tookit.windows.mysql.dto.InstallMySqlDTO;
-import io.tan.tookit.windows.mysql.entity.MySqlCommand;
-import io.tan.tookit.windows.mysql.vo.MySqlVO;
-import io.tan.tookit.windows.nginx.NginxUtil;
-import io.tan.tookit.windows.nginx.dto.InstallOpenRestyDTO;
-import io.tan.tookit.windows.nginx.entity.NginxCommand;
-import io.tan.tookit.windows.nginx.vo.InstallOpenRestyVO;
 import io.tan.tookit.windows.vo.FindPortVO;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
-import java.io.IOException;
 import java.util.*;
 
 /**
@@ -86,22 +68,26 @@ public class WindowsCommandController {
                 "/c",
                 "for /f \"tokens=5\" %a in ('netstat /ano ^| findstr " + port + "') do @echo %a");
         String[] split = StringUtils.split(pids, "\r\n");
-        HashSet<String> hashSet = new HashSet(Arrays.asList(split));
-        hashSet.removeIf(i -> i.equals("0"));
+        if (null != split) {
+            HashSet<String> hashSet = new HashSet<>(Arrays.asList(split));
+            hashSet.removeIf("0"::equals);
 
-        List<FindPortVO> findPortVOS = new ArrayList<>();
-        hashSet.forEach(pid -> {
-            String pidName = CommandUtil.commandRunStr("cmd",
-                    "/c",
-                    "for /f \"usebackq tokens=1-5\" %a in (`tasklist ^| findstr " + pid + "`) do (@echo %a)");
-            pidName = pidName.split("\r\n")[2];
-            findPortVOS.add(FindPortVO.builder()
-                    .pid(pid)
-                    .pidName(pidName)
-                    .build());
-        });
+            List<FindPortVO> findPortVOS = new ArrayList<>();
+            hashSet.forEach(pid -> {
+                String pidName = CommandUtil.commandRunStr("cmd",
+                        "/c",
+                        "for /f \"usebackq tokens=1-5\" %a in (`tasklist ^| findstr " + pid + "`) do (@echo %a)");
+                assert pidName != null;
+                pidName = pidName.split("\r\n")[2];
+                findPortVOS.add(FindPortVO.builder()
+                        .pid(pid)
+                        .pidName(pidName)
+                        .build());
+            });
 
 
-        return ResultVO.success(findPortVOS, "查询成功");
+            return ResultVO.success(findPortVOS, "查询成功");
+        }
+        return ResultVO.success( "该端口下无进程活动");
     }
 }
