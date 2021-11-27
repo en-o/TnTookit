@@ -1,5 +1,29 @@
-# TnTookit
-> 我的工具箱
+<div style="text-align: center;">
+	<a href="https://tannn.cn"  target="_blank">
+	    <img src="https://tannn.cn/images/Img/TnTookit.jpg" width="400" alt="logo">
+	</a>
+</div>
+<div style="text-align: center;">
+	<strong>TnTookit 服务器/开发机 环境工具箱</strong>
+</div>
+<div style="text-align: center; margin-top: 20px">
+    <a target="_blank" href="https://tannn.cn">
+        <img src='https://img.shields.io/badge/license-GPL--3.0-brightgreen' alt='license'/>
+    </a>
+    <a target="_blank" href="https://tannn.cn">
+        <img src='https://img.shields.io/badge/JDK-1.8.0_281+-green.svg' alt='jdk'/>
+    </a>
+    <a target="_blank" href="https://tannn.cn">
+        <img src='https://gitee.com/etn/TnTookit/badge/star.svg?theme=dark' alt='gitee star'/>
+    </a>
+    <a target="_blank" href="https://tannn.cn">
+        <img src='https://img.shields.io/badge/Author-谭宁-orange.svg' alt='author'/>
+    </a>
+    <a target="_blank" href="https://tannn.cn">
+        <img src='https://img.shields.io/badge/version-v0.0.1beta-brightgreen.svg' alt='version'/>
+    </a>
+</div>
+
 
 # 注意事项
 ## 项目依赖resources目录下的tools包
