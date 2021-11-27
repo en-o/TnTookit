@@ -36,6 +36,10 @@ C:.
 ├        ├─7-Zip
 ├        │  └─Lang
 ├        └─winsw
+├        └─mysql
+├        │  └─mysql8
+├        │  └─VC_redist.x64.exe
+├        └─commonbat
 └─tanTookit-0.0.1-SNAPSHOT.jar
 ```
 
