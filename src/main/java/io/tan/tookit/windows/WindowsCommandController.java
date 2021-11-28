@@ -12,6 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.constraints.NotNull;
@@ -61,7 +62,7 @@ public class WindowsCommandController {
      */
     @SneakyThrows
     @ApiOperation(value = "根据端口查询进程名", notes = "find port")
-    @DeleteMapping("find/port")
+    @GetMapping("find/port")
     @ApiImplicitParam(value = "端口号", name = "port", required = true, dataTypeClass = Integer.class)
     public ResultVO<List<FindPortVO>> findPort(@RequestParam @NotNull(message = "端口不能为空") Integer port) {
         String pids = CommandUtil.commandRunStr("cmd",
