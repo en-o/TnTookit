@@ -29,4 +29,14 @@ public class UrlConstant {
      */
     public static final String MYSQL8_DOWNLOAD_URL = "https://mirrors.huaweicloud.com/mysql/Downloads/MySQL-8.0/{0}";
 
+    /**
+     * window redis下载
+     * Redis-x64-4.0.2.2.zip
+     * window redis下载：https://github.com/tporadowski/redis/releases
+     * 代理地址 ;https://github.rc1844.workers.dev/
+     *
+     * 《MessageFormat.format(REDIS_WIN_DOWNLOAD_URL,4.0.2.2,fileName)》
+     */
+    public static final String REDIS_WIN_DOWNLOAD_URL = "https://github.rc1844.workers.dev/tporadowski/redis/releases/download/v{0}/{1}";
+
 }

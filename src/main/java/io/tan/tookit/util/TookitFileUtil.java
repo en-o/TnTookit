@@ -63,7 +63,10 @@ public class TookitFileUtil {
      * @return true 不存在
      */
     public static boolean existsDirectory(String unzipPath, String unzipFileMainName) {
-        String unZipFilePath = unzipPath + File.separatorChar + unzipFileMainName;
+        String unZipFilePath = unzipPath;
+        if(StringUtils.isNotBlank(unzipFileMainName)){
+            unZipFilePath = unzipPath + File.separatorChar + unzipFileMainName;
+        }
         return !FileUtil.exist(unZipFilePath);
     }
 
@@ -87,7 +90,12 @@ public class TookitFileUtil {
         } else {
             log.info("文件" + fileName + "早已解压");
         }
-        return getRealFilePath(unzip + TookitFileUtil.FILE_SEPARATOR + unZipName);
+        if(StringUtils.isNotBlank(unZipName)){
+            return getRealFilePath(unzip + TookitFileUtil.FILE_SEPARATOR + unZipName);
+        }else {
+            return getRealFilePath(unzip);
+        }
+
     }
 
 }

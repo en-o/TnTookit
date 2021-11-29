@@ -24,4 +24,10 @@ public class AppNameConstant {
      *
      */
     public static final String MYSQL8_WIN_NAME = "mysql-{0}-winx64.zip";
+
+    /**
+     *  Redis-x64-4.0.2.2.zip下载名字
+     *
+     */
+    public static final String REDIS_WIN_NAME = "Redis-x64-{0}.zip";
 }
