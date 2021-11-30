@@ -40,6 +40,7 @@ C:.
 ├        │  └─mysql8
 ├        │  └─VC_redist.x64.exe
 ├        └─commonbat
+├        └─redis
 └─tanTookit-0.0.1-SNAPSHOT.jar
 ```
 
