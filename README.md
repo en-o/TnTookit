@@ -26,6 +26,9 @@
 
 
 # 注意事项
+## windows 命令权限问题
+1. jar必须在有管理权限的命令行启动
+2. 源码调试时 ide 必须以管理员启动
 ## 项目依赖resources目录下的tools包
 1. 源码启动请把tools（包含tools）整个包移动到 target 下使用
 2. jar启动请把tools（包含tools）整个包跟随jar放在一起tree -
