@@ -84,10 +84,10 @@ public class RedisUtil {
                 installBat,
                 unZipFilePath + "\\installRedis.bat");
         // 安装
-        return CommandUtil.commandRunStr("cmd",
+        String str = CommandUtil.commandRunStr(new File(unZipFilePath),"cmd",
                 "/c",
-                unZipFilePath + "\\installRedis.bat",serviceName,
-                unZipFilePath,
+                unZipFilePath + "\\installRedis.bat", serviceName,
                 port);
+        return str;
     }
 }

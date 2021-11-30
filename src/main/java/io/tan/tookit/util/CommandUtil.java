@@ -77,6 +77,36 @@ public class CommandUtil {
         }
     }
 
+
+    /**
+     * 运行 命令
+     *
+     * @param commands 命令
+     * @return boolean
+     */
+    public static String commandRunStr(File file, String... commands) {
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.redirectErrorStream(true);
+            processBuilder.command(commands);
+            processBuilder.directory(file);
+            log.info("命令：" + processBuilder.command());
+            Process start = processBuilder.start();
+            String result = commandGBKResult(start.getInputStream());
+            log.info(result);
+            start.waitFor();
+            start.destroy();
+            return result;
+        } catch (InterruptedException | IOException e) {
+            if(e instanceof InterruptedException){
+                Thread.currentThread().interrupt();
+            }
+            e.printStackTrace();
+            log.error("运行命令:", e.getMessage());
+            return null;
+        }
+    }
+
     /**
      * 运行 命令
      *

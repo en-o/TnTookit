@@ -8,6 +8,7 @@ import io.tan.tookit.windows.redis.RedisUtil;
 import io.tan.tookit.windows.redis.dto.InstalRedisDTO;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -40,10 +41,15 @@ public class RedisController {
         String unZipFilePath = RedisUtil.redisUnzip(redisDTO.getInstallPath(), redisDTO.getFileName(), filePath);
         // TODO: 2021/11/29 redis 注册服务 - 未测试
         if (redisDTO.getRegisterService() == 1) {
-            String password = RedisUtil.addService(redisDTO.getPort(), "password",
+            String installService = RedisUtil.addService(redisDTO.getPort(), "password",
                     redisDTO.getServiceName(),
                     unZipFilePath);
-            return ResultVO.success(password, "安装服务成功");
+            if(StringUtils.contains(installService,"service successfully started")){
+                return ResultVO.success(installService, "安装服务成功");
+            }else {
+                return ResultVO.fail(installService);
+            }
+
         }
         return ResultVO.success(unZipFilePath, "redis下载解压成功");
     }
