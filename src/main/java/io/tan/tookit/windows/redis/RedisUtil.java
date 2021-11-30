@@ -87,7 +87,8 @@ public class RedisUtil {
         String str = CommandUtil.commandRunStr(new File(unZipFilePath),"cmd",
                 "/c",
                 unZipFilePath + "\\installRedis.bat", serviceName,
-                port);
+                port,
+                password);
         return str;
     }
 }

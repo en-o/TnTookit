@@ -41,7 +41,7 @@ public class RedisController {
         String unZipFilePath = RedisUtil.redisUnzip(redisDTO.getInstallPath(), redisDTO.getFileName(), filePath);
         // TODO: 2021/11/29 redis 注册服务 - 未测试
         if (redisDTO.getRegisterService() == 1) {
-            String installService = RedisUtil.addService(redisDTO.getPort(), "password",
+            String installService = RedisUtil.addService(redisDTO.getPort(), redisDTO.getPassword(),
                     redisDTO.getServiceName(),
                     unZipFilePath);
             if(StringUtils.contains(installService,"service successfully started")){

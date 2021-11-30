@@ -49,6 +49,12 @@ public class InstalRedisDTO implements Serializable {
     @Builder.Default
     String port = "6379";
 
+    /**
+     * 设置密码  默认123456
+     */
+    @ApiModelProperty(value = "设置密码", example = "123456")
+    @Builder.Default
+    String password = "123456";
 
     /**
      * 文件名称
