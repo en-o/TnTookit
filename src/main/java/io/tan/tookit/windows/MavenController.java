@@ -1,7 +1,7 @@
 package io.tan.tookit.windows;
 
-import cn.jdevelops.annotation.mapping.PathRestController;
-import cn.jdevelops.result.result.ResultVO;
+import cn.jdevelop.annotation.mapping.PathRestController;
+import cn.jdevelop.result.result.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.tan.tookit.windows.maven.MavenUtil;
@@ -35,8 +35,8 @@ public class MavenController {
      */
     @SneakyThrows
     @ApiOperation(value = "安装maven", notes = "下载跟设置全局环境变量")
-    @PostMapping("installMaven")
-    public ResultVO<MavenVO> installMaven(@RequestBody @Valid InstallMavenDTO mavenDTO) {
+    @PostMapping("installOMaven")
+    public ResultVO<MavenVO> installOMaven(@RequestBody @Valid InstallMavenDTO mavenDTO) {
         String mavenName = mavenDTO.getFileName();
         // 下载文件
         String filePath = MavenUtil.mavenDownLoad(mavenName, mavenDTO.getMaven3Version());

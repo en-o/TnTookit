@@ -1,7 +1,7 @@
 package io.tan.tookit.windows;
 
-import cn.jdevelops.annotation.mapping.PathRestController;
-import cn.jdevelops.result.result.ResultVO;
+import cn.jdevelop.annotation.mapping.PathRestController;
+import cn.jdevelop.result.result.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.tan.tookit.windows.mysql.MySqlUtil;
@@ -34,8 +34,8 @@ public class MySqlController {
      */
     @SneakyThrows
     @ApiOperation(value = "安装MySQL", notes = "下载（解压版），安装，设置全局")
-    @PostMapping("installMySql")
-    public ResultVO<MySqlVO> installMySql(@RequestBody @Valid InstallMySqlDTO mySqlDTO) {
+    @PostMapping("installOMySQL")
+    public ResultVO<MySqlVO> installOMySQL(@RequestBody @Valid InstallMySqlDTO mySqlDTO) {
         // 下载文件
         String filePath = MySqlUtil.mysqlDownLoad(mySqlDTO.getFileName());
         // 解压文件
