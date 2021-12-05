@@ -1,7 +1,7 @@
 package io.tan.tookit.windows;
 
-import com.detabes.annotation.mapping.PathRestController;
-import com.detabes.result.result.ResultVO;
+import cn.jdevelop.annotation.mapping.PathRestController;
+import cn.jdevelop.result.result.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;

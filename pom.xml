@@ -15,7 +15,7 @@
     <description>TnTookit</description>
     <properties>
         <java.version>1.8</java.version>
-        <detabes.version>2.0.0</detabes.version>
+        <jdevelop.version>2.0.1</jdevelop.version>
         <hutool.version>5.7.16</hutool.version>
     </properties>
     <dependencies>
@@ -30,19 +30,19 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>com.detabes</groupId>
+            <groupId>cn.jdevelop</groupId>
             <artifactId>apis-annotation</artifactId>
-            <version>${detabes.version}</version>
+            <version>${jdevelop.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.detabes</groupId>
+            <groupId>cn.jdevelop</groupId>
             <artifactId>apis-exception</artifactId>
-            <version>${detabes.version}</version>
+            <version>${jdevelop.version}</version>
         </dependency>
         <dependency>
-            <groupId>com.detabes</groupId>
+            <groupId>cn.jdevelop</groupId>
             <artifactId>doc-swagger-boot</artifactId>
-            <version>${detabes.version}</version>
+            <version>${jdevelop.version}</version>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -81,6 +81,7 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.5.0</version>
             </plugin>
         </plugins>
     </build>
