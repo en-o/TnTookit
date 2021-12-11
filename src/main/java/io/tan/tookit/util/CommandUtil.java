@@ -44,7 +44,7 @@ public class CommandUtil {
             }
             e.printStackTrace();
             e.printStackTrace();
-            log.error("运行命令:", e.getMessage());
+            log.error("运行命令:{}", e.getMessage());
             return false;
         }
     }
@@ -72,7 +72,36 @@ public class CommandUtil {
                 Thread.currentThread().interrupt();
             }
             e.printStackTrace();
-            log.error("运行命令:", e.getMessage());
+            log.error("运行命令:{}", e.getMessage());
+            return null;
+        }
+    }
+
+
+    /**
+     * 运行 命令
+     *
+     * @param commands 命令
+     * @return boolean
+     */
+    public static String commandRunCharset(Charset charset,String... commands) {
+        try {
+            ProcessBuilder processBuilder = new ProcessBuilder();
+            processBuilder.redirectErrorStream(true);
+            processBuilder.command(commands);
+            log.info("命令：" + processBuilder.command());
+            Process start = processBuilder.start();
+            String result = IoUtil.read(start.getInputStream(), charset);
+            log.info(result);
+            start.waitFor();
+            start.destroy();
+            return result;
+        } catch (InterruptedException | IOException e) {
+            if(e instanceof InterruptedException){
+                Thread.currentThread().interrupt();
+            }
+            e.printStackTrace();
+            log.error("运行命令:{}", e.getMessage());
             return null;
         }
     }
@@ -102,7 +131,7 @@ public class CommandUtil {
                 Thread.currentThread().interrupt();
             }
             e.printStackTrace();
-            log.error("运行命令:", e.getMessage());
+            log.error("运行命令:{}", e.getMessage());
             return null;
         }
     }
@@ -132,7 +161,7 @@ public class CommandUtil {
                 Thread.currentThread().interrupt();
             }
             e.printStackTrace();
-            log.error("运行命令2:", e.getMessage());
+            log.error("运行命令2:{}", e.getMessage());
         }
         return false;
     }
@@ -159,7 +188,7 @@ public class CommandUtil {
                 Thread.currentThread().interrupt();
             }
             e.printStackTrace();
-            log.error("检查命令是否有效是否存在:", e.getMessage());
+            log.error("检查命令是否有效是否存在:{}", e.getMessage());
         }
         return false;
     }
@@ -186,7 +215,7 @@ public class CommandUtil {
                 Thread.currentThread().interrupt();
             }
             e.printStackTrace();
-            log.error("检查命令是否有效是否存在:", e.getMessage());
+            log.error("检查命令是否有效是否存在:{}", e.getMessage());
         }
         return null;
     }
@@ -223,7 +252,7 @@ public class CommandUtil {
                 Thread.currentThread().interrupt();
             }
             e.printStackTrace();
-            log.error("检查环境变量是否有效是否存在:",e.getMessage());
+            log.error("检查环境变量是否有效是否存在:{}",e.getMessage());
         }
         return false;
     }
@@ -244,7 +273,6 @@ public class CommandUtil {
      * @param installPath  安装路径
      * @param fileName  文件名
      * @param filePath  待文件觉得路径
-     * @return 解压路径
      */
     public static void unzip7Z(String installPath, String fileName, String filePath) {
         // 已经解压就不要在解压了

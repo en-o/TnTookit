@@ -1,6 +1,6 @@
-detabes:
+jdevelops:
   swagger:
-    base-package: io.tan.tookit
+    base-package: io.tan.tookit.controller
     title: 环境配置工具箱
     description: 通过接口的形式配置java开发和运行环境
     contact-url: https://tannn.cn/
