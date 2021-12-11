@@ -1,7 +1,7 @@
 package io.tan.tookit.windows;
 
-import cn.jdevelop.annotation.mapping.PathRestController;
-import cn.jdevelop.result.result.ResultVO;
+import cn.jdevelops.annotation.mapping.PathRestController;
+import cn.jdevelops.result.result.ResultVO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -73,21 +73,21 @@ public class WindowsCommandController {
             HashSet<String> hashSet = new HashSet<>(Arrays.asList(split));
             hashSet.removeIf("0"::equals);
 
-            List<FindPortVO> findPortVOS = new ArrayList<>();
+            List<FindPortVO> findPortVO = new ArrayList<>();
             hashSet.forEach(pid -> {
                 String pidName = CommandUtil.commandRunStr("cmd",
                         "/c",
                         "for /f \"usebackq tokens=1-5\" %a in (`tasklist ^| findstr " + pid + "`) do (@echo %a)");
                 assert pidName != null;
                 pidName = pidName.split("\r\n")[2];
-                findPortVOS.add(FindPortVO.builder()
+                findPortVO.add(FindPortVO.builder()
                         .pid(pid)
                         .pidName(pidName)
                         .build());
             });
 
 
-            return ResultVO.success(findPortVOS, "查询成功");
+            return ResultVO.success(findPortVO, "查询成功");
         }
         return ResultVO.success( "该端口下无进程活动");
     }
