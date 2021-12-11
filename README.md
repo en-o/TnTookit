@@ -44,6 +44,8 @@ C:.
 ├        │  └─VC_redist.x64.exe
 ├        └─commonbat
 ├        └─redis
+├    └─linux
+├        ├─nginx
 └─tanTookit-0.0.1-SNAPSHOT.jar
 ```
 
@@ -73,6 +75,12 @@ C:.
 ## win公共功能
 ### 1. 根据端口查询进程名
 ### 2. 根据端口杀进程
+
+
+## linx 
+> 测试机型centos
+### OpenResty(nginx)的安装注册服务加自启
+
 
 # 用途
 1. 安装开发中用到的环境
