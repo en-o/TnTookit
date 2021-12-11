@@ -1,4 +1,4 @@
-package io.tan.tookit.windows;
+package io.tan.tookit.controller;
 
 import cn.jdevelops.annotation.mapping.PathRestController;
 import cn.jdevelops.result.result.ResultVO;
@@ -16,27 +16,27 @@ import org.springframework.web.bind.annotation.RequestBody;
 import javax.validation.Valid;
 
 /**
- * win10环境部署
+ * 环境部署
  *
  * @author tn
  * @version 1
  * @date 2021-11-23 10:15
  */
-@Api(tags = {"winEnv - maven"})
-@PathRestController("win/maven")
+@Api(tags = {"maven"})
+@PathRestController("maven")
 @Slf4j
 public class MavenController {
 
 
     /**
-     * maven
+     * WIN10 maven
      *
      * @return message
      */
     @SneakyThrows
-    @ApiOperation(value = "安装maven", notes = "下载跟设置全局环境变量")
-    @PostMapping("installMaven")
-    public ResultVO<MavenVO> installMaven(@RequestBody @Valid InstallMavenDTO mavenDTO) {
+    @ApiOperation(value = "win10安装maven", notes = "下载跟设置全局环境变量")
+    @PostMapping("/win/installMaven")
+    public ResultVO<MavenVO> installMavenByWin(@RequestBody @Valid InstallMavenDTO mavenDTO) {
         String mavenName = mavenDTO.getFileName();
         // 下载文件
         String filePath = MavenUtil.mavenDownLoad(mavenName, mavenDTO.getMaven3Version());

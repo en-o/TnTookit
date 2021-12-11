@@ -1,4 +1,4 @@
-package io.tan.tookit.windows;
+package io.tan.tookit.controller;
 
 import cn.jdevelops.annotation.mapping.PathRestController;
 import cn.jdevelops.result.result.ResultVO;
@@ -16,26 +16,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import javax.validation.Valid;
 
 /**
- * win10环境部署
+ * 环境部署
  *
  * @author tn
  * @version 1
  * @date 2021-11-23 10:15
  */
-@Api(tags = {"winEnv - mysql"})
-@PathRestController("win/mysql")
+@Api(tags = {"mysql"})
+@PathRestController("mysql")
 @Slf4j
 public class MySqlController {
 
     /**
-     * mysql
+     * win10 mysql
      *
      * @return message
      */
     @SneakyThrows
-    @ApiOperation(value = "安装MySQL", notes = "下载（解压版），安装，设置全局")
-    @PostMapping("installMySql")
-    public ResultVO<MySqlVO> installMySql(@RequestBody @Valid InstallMySqlDTO mySqlDTO) {
+    @ApiOperation(value = "win10安装MySQL", notes = "下载（解压版），安装，设置全局")
+    @PostMapping("/win/installMySql")
+    public ResultVO<MySqlVO> installMySqlByWin(@RequestBody @Valid InstallMySqlDTO mySqlDTO) {
         // 下载文件
         String filePath = MySqlUtil.mysqlDownLoad(mySqlDTO.getFileName());
         // 解压文件

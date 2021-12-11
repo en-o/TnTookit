@@ -1,4 +1,4 @@
-package io.tan.tookit.windows;
+package io.tan.tookit.controller;
 
 import cn.jdevelops.annotation.mapping.PathRestController;
 import cn.jdevelops.result.result.ResultVO;
@@ -16,26 +16,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import javax.validation.Valid;
 
 /**
- * win10环境部署
+ * 环境部署
  *
  * @author tn
  * @version 1
  * @date 2021-11-23 10:15
  */
-@Api(tags = {"winEnv - nginx"})
-@PathRestController("win/nginx")
+@Api(tags = {"nginx"})
+@PathRestController("nginx")
 @Slf4j
 public class NginxController {
 
     /**
-     * nginx
+     * win10 nginx
      *
      * @return message
      */
     @SneakyThrows
-    @ApiOperation(value = "安装OpenResty", notes = "Nginx的下载，注册服务跟设置服务自启")
-    @PostMapping("installOpenResty")
-    public ResultVO<InstallOpenRestyVO> installOpenResty(@RequestBody @Valid InstallOpenRestyDTO installation) {
+    @ApiOperation(value = "win10安装OpenResty", notes = "Nginx的下载，注册服务跟设置服务自启")
+    @PostMapping("/win/installOpenResty")
+    public ResultVO<InstallOpenRestyVO> installOpenRestyByWin(@RequestBody @Valid InstallOpenRestyDTO installation) {
         String openRestyName = installation.getFileName();
         // 下载文件
         String filePath = NginxUtil.nginxDownLoad(openRestyName);
