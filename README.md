@@ -24,6 +24,9 @@
     </a>
 </div>
 
+#全局配置
+1. Linux默认打开防火墙端口 80，8080，443
+> 只能在Centos7 或者 防火墙是firewall 的情况下生效
 
 # 注意事项
 ## windows 命令权限问题
@@ -31,7 +34,7 @@
 2. 源码调试时 ide 必须以管理员启动
 ## 项目依赖resources目录下的tools包
 1. 源码启动请把tools（包含tools）整个包移动到 target 下使用
-2. jar启动请把tools（包含tools）整个包跟随jar放在一起tree -
+2. jar启动请把tools（包含tools）整个包跟随jar放在一起 tree如下：
 ```text
 C:.
 └─tools
@@ -77,9 +80,10 @@ C:.
 ### 2. 根据端口杀进程
 
 
-## linx 
-> 测试机型centos
+## Linx 
+> 测试机型Centos7
 ### OpenResty(nginx)的安装注册服务加自启
+> 默认打开80端口
 
 
 # 用途
