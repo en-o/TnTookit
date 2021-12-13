@@ -64,13 +64,18 @@ public class NginxController {
     @SneakyThrows
     @ApiOperation(value = "centos安装OpenResty", notes = "Nginx的下载，注册服务跟设置服务自启(最高版本)")
     @PostMapping("/centos/installOpenResty")
-    public ResultVO<String> installOpenRestyByCentos() {
+    public ResultVO<InstallOpenRestyVO> installOpenRestyByCentos() {
         // jar文件夹
         String jarPath = TookitFileUtil.getJarPathForFile().getParentFile().toString();
         //  脚本文件夹
         String installShell = jarPath + "/tools/linux/nginx/nginx_install.sh";
         String msg = CommandUtil.commandRunCharset(StandardCharsets.UTF_8,"bash", "-c", "chmod 755 " + installShell + " && source " + installShell);
-        return ResultVO.success(msg,"install ok");
+        InstallOpenRestyVO build = InstallOpenRestyVO.builder()
+                .configPath("/usr/local/openresty/nginx/conf")
+                .installPath("/usr/local/openresty")
+                .nginxCommand(NginxCommand.builder().build())
+                .build();
+        return ResultVO.success(build,msg);
     }
 
 }

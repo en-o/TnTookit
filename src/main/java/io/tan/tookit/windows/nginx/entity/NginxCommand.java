@@ -39,14 +39,28 @@ public class NginxCommand  implements Serializable {
     @Builder.Default
     private String checkConfig = "nginx -t";
 
-
     @ApiModelProperty(value = "windows注册服务之后的启动命令",notes = "管理员模式运行命令")
     @Builder.Default
     private String windowsStartup = "net start nginx";
 
-
     @ApiModelProperty(value = "windows注册服务之后的停止命令",notes = "管理员模式运行命令")
     @Builder.Default
     private String windowsStop = "net stop  nginx";
+
+    @ApiModelProperty(value = "linux设置自启后启动nginx服务")
+    @Builder.Default
+    private String linuxStartup = "systemctl start nginx.service";
+
+    @ApiModelProperty(value = "linux设置自启后停止命令")
+    @Builder.Default
+    private String linuxStop = "systemctl stop nginx.service";
+
+    @ApiModelProperty(value = "linux设置自启后重启nginx服务",notes = "常用")
+    @Builder.Default
+    private String linuxRestart = "systemctl restart nginx.service";
+
+    @ApiModelProperty(value = "linux设查看Nginx进程",notes = "常用")
+    @Builder.Default
+    private String linuxCheckNginx = "ps -ef | grep nginx";
 
 }

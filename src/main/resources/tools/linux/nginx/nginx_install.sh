@@ -130,3 +130,6 @@ wait
 systemctl daemon-reload
 wait
 systemctl enable nginx.service
+wait
+firewall-cmd --zone=public --add-port=80/tcp --permanent
+wait
