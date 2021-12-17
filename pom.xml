@@ -16,7 +16,7 @@
     <properties>
         <java.version>1.8</java.version>
         <jdevelops.version>2.0.2</jdevelops.version>
-        <hutool.version>5.7.16</hutool.version>
+        <hutool.version>5.7.17</hutool.version>
     </properties>
     <dependencies>
         <dependency>
@@ -70,16 +70,6 @@
             <releases>
                 <enabled>true</enabled>
             </releases>
-        </repository>
-        <repository>
-            <id>local-nexus</id>
-            <url>https://nexus.tannn.cn/repository/maven-public/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
         </repository>
     </repositories>
     <build>
