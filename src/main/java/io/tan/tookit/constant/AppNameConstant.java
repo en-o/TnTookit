@@ -24,6 +24,11 @@ public class AppNameConstant {
      *
      */
     public static final String MYSQL8_WIN_NAME = "mysql-{0}-winx64.zip";
+    /**
+     *  mysql8.x linux下载名字
+     *
+     */
+    public static final String MYSQL8_LINUX_NAME = "mysql-${0}-linux-glibc2.12-x86_64.tar.xz";
 
     /**
      *  Redis-x64-4.0.2.2.zip下载名字

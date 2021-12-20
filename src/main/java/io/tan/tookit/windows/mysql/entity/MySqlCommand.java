@@ -22,6 +22,23 @@ public class MySqlCommand implements Serializable {
 
     private static final long serialVersionUID = 315654089784739497L;
 
+    @ApiModelProperty(value = "linux mysql 开启")
+    @Builder.Default
+    private String linuxMysqlStart = "service mysql start";
+
+    @ApiModelProperty(value = "linux mysql 关闭")
+    @Builder.Default
+    private String linuxMysqlStop = "service mysql stop";
+
+    @ApiModelProperty(value = "linux mysql 重启")
+    @Builder.Default
+    private String linuxMysqlRestart = "service mysql restart";
+
+    @ApiModelProperty(value = "linux mysql 状态")
+    @Builder.Default
+    private String linuxMysqlStatus = "service mysql status";
+
+
     @ApiModelProperty(value = "隐式mysql登录（显式：'mysql -u root -p123'）")
     @Builder.Default
     private String mySqlLogin = "mysql -u 用户名 -p;";
